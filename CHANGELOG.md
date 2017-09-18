@@ -1,6 +1,60 @@
 Changelog
 =========
 
+## 0.8.6
+
+- Fix error in `simple-unless` rule when an `{{if` or `{{unless` block was empty.
+
+## 0.8.5
+
+- Add new `template-length` rule. When enabled, this rule restricts the total number of lines in a template file to the configured number. You can read more about the rule (and configuration) [in the documentation](https://github.com/rwjblue/ember-template-lint/blob/master/docs/rule/template-length.md).
+
+## 0.8.4
+
+- Add new `attribute-indentation` rule.  Examples:
+
+``` hbs
+{{! good }}
+
+{{foo-bar baz="bat" derp="qux"}}
+
+{{foo-bar
+  baz="bat"
+  derp="qux"
+}}
+
+{{#foo-bar
+  baz="bat"
+  derp="qux"
+as |foo|}}
+  stuff here
+{{/foo-bar}}
+
+{{#foo-bar baz="bat" derp="qux" as |foo|}}
+  stuff here
+{{/foo-bar}}
+```
+
+``` hbs
+{{! bad }}
+
+{{foo-bar baz="bat"
+  derp="qux"
+}}
+
+{{foo-bar
+baz="bat"
+derp="qux"
+}}
+
+{{foo-bar
+  baz="bat"
+  derp="qux"}}
+```
+
+You can read more about the rule (and configuration) [in the documentation](https://github.com/rwjblue/ember-template-lint/blob/master/docs/rule/attribute-indentation.md).
+
+
 ## 0.8.3
 
 - Update @glimmer packages to 0.27.0.
